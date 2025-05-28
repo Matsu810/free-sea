@@ -8,7 +8,10 @@ public class PlayerControllerInput : MonoBehaviour
     public Transform bulletSpawnPoint;
     public float moveSpeed = 5f;
     public float fireInterval = 0.2f;
+    public GameObject lockOnBulletPrefab;
+    public float lockOnRange = 20f;
 
+    private InputAction lockOnFireAction;  // 第二の攻撃
     private InputAction moveAction;
     private InputAction fireAction;
 
@@ -36,12 +39,46 @@ public class PlayerControllerInput : MonoBehaviour
         // ボタンが押されたら発射フラグ ON/OFF
         fireAction.performed += ctx => isFiring = true;
         fireAction.canceled += ctx => isFiring = false;
+
+        lockOnFireAction = new InputAction("LockOnFire", InputActionType.Button);
+        lockOnFireAction.AddBinding("<Keyboard>/l");
+        lockOnFireAction.AddBinding("<Gamepad>/buttonWest"); // Bボタン
+        lockOnFireAction.Enable();
+
+        lockOnFireAction.performed += ctx => FireAtNearestUnderEnemy();
+
     }
 
     private void OnDisable()
     {
         moveAction.Disable();
         fireAction.Disable();
+    }
+    private void FireAtNearestUnderEnemy()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("UnderEnemy");
+        if (targets.Length == 0) return;
+
+        GameObject nearest = null;
+        float shortestDist = Mathf.Infinity;
+
+        foreach (GameObject target in targets)
+        {
+            float dist = Vector3.Distance(transform.position, target.transform.position);
+            if (dist < shortestDist && dist <= lockOnRange)
+            {
+                shortestDist = dist;
+                nearest = target;
+            }
+        }
+
+        if (nearest != null)
+        {
+            Vector3 direction = (nearest.transform.position - bulletSpawnPoint.position).normalized;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+
+            Instantiate(lockOnBulletPrefab, bulletSpawnPoint.position, rotation);
+        }
     }
 
     private void Update()
