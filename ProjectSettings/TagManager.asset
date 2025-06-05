@@ -10,6 +10,7 @@ TagManager:
   - PlayerBullet
   - Boss
   - EnemySpawn
+  - Gem
   layers:
   - Default
   - TransparentFX

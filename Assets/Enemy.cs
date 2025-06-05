@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int maxHP = 1;
@@ -7,16 +8,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float fireInterval = 2f;
+    [SerializeField] private float moveSpeed = 2f; // Zマイナス方向への移動速度
 
     private float fireTimer = 0f;
     private int currentHP;
     private Transform player;
+    private Rigidbody rb;
 
     private void Start()
     {
         currentHP = maxHP;
 
-        // プレイヤーを自動で取得（初期化時に一度だけ）
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = Vector3.back * moveSpeed; // ← Rigidbody で移動
+
+        // プレイヤーを取得
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -27,6 +33,9 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         HandleShooting();
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(direction);
+       
     }
 
     private void HandleShooting()
@@ -45,15 +54,14 @@ public class Enemy : MonoBehaviour
     {
         if (player == null) return;
 
-        // 最新のプレイヤー位置に向かって撃つ
         Vector3 direction = (player.position - firePoint.position).normalized;
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.LookRotation(direction));
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+        Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
 
-        if (rb != null)
+        if (bulletRb != null)
         {
-            rb.velocity = direction * bulletSpeed;
+            bulletRb.velocity = direction * bulletSpeed;
         }
     }
 
@@ -82,7 +90,7 @@ public class Enemy : MonoBehaviour
                 playerScript.TakeDamage(1);
             }
 
-            TakeDamage(1); // 接触で自分も死ぬ
+            TakeDamage(1);
         }
 
         if (other.CompareTag("PlayerBullet"))

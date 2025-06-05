@@ -52,7 +52,7 @@ public class Boss : MonoBehaviour
         GameObject bullet = Instantiate(bossBulletPrefab, firePoint.position, Quaternion.identity);
 
         // プレイヤーの現在地から方向を計算
-        Vector3 direction = (playerTransform.position - firePoint.position).normalized;
+        Vector3 direction = (playerTransform.position - firePoint.position).normalized; 
 
         // 弾の回転（Z方向を前に向ける）
         bullet.transform.rotation = Quaternion.LookRotation(direction);

@@ -313,8 +313,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6125081463262355996}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.94445044, z: -0.32865402, w: 0}
-  m_LocalPosition: {x: -61.70662, y: -426, z: 30.031654}
+  m_LocalRotation: {x: -0.010667977, y: 0.8704572, z: 0.49144027, w: -0.026020374}
+  m_LocalPosition: {x: -9.543188, y: -5.229821, z: -9.387348}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -322,7 +322,7 @@ Transform:
   - {fileID: 2789393348175032360}
   - {fileID: 1517440766223973523}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -38.374, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: -58.76, y: 186.175, z: -4.883}
 --- !u!95 &4469431663875349621
 Animator:
   serializedVersion: 5
@@ -362,7 +362,7 @@ MonoBehaviour:
   firePoint: {fileID: 1517440766223973523}
   bulletSpeed: 10
   fireInterval: 2
-  player: {fileID: 7745765798297966018, guid: fb350562f64c70e4483e3aadbd89cbb9, type: 3}
+  moveSpeed: 2
 --- !u!65 &2188223641586633092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -406,8 +406,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
