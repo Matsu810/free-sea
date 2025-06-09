@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour
     public Transform firePoint; // 弾を出す位置
     public float bulletSpeed = 20f;
     public Transform playerTransform; // プレイヤーのTransformをInspectorで設定
-
+    private Transform player;
     private Renderer rend;
     private Color originalColor;
 
@@ -33,6 +33,12 @@ public class Boss : MonoBehaviour
         {
             Debug.LogWarning("Renderer not found on Boss or its children!");
         }
+        // プレイヤーを取得
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
     }
 
     void Update()
@@ -44,6 +50,8 @@ public class Boss : MonoBehaviour
             Fire();
             fireTimer = 0f;
         }
+        Vector3 direction = (player.position - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 
     void Fire()

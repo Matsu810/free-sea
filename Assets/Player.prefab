@@ -143,6 +143,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 20
+  isDead: 0
+  bulletPrefab: {fileID: 2307297236987555287, guid: 58c4c3afc72a38349991e6a6b79e59a0,
+    type: 3}
+  bulletSpawnPoint: {fileID: 0}
+  bulletSpeed: 10
+  maxExp: 10
 --- !u!1 &1642981100224005440
 GameObject:
   m_ObjectHideFlags: 0
