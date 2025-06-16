@@ -11,6 +11,7 @@ TagManager:
   - Boss
   - EnemySpawn
   - Gem
+  - Field
   layers:
   - Default
   - TransparentFX

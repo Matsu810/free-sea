@@ -9,8 +9,14 @@ public class GameManager : MonoBehaviour
     public GameObject bossPrefab;          // ボスのプレハブ
     public Transform bossSpawnPoint;       // ボスの出現位置
     public float bossSpawnDelay = 5f;      // ボス出現までの時間（秒）
-
     private bool bossSpawned = false;
+
+    [Header("Field & Gem Move Settings")]
+    public float fieldMoveSpeed = 1f;      // Field/Gemの移動速度
+
+    [Header("Gem Drop Settings")]
+    public GameObject gemPrefab;           // Gemプレハブ
+    public float gemDropChance = 0.2f;     // 5分の1=0.2
 
     private void Awake()
     {
@@ -21,6 +27,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(BossSpawnRoutine());
+    }
+
+    private void Update()
+    {
+        MoveFields();
+        MoveGems();
     }
 
     IEnumerator BossSpawnRoutine()
@@ -65,6 +77,42 @@ public class GameManager : MonoBehaviour
                 // プレイヤーのスピードを上げる
                 break;
                 // 他にも追加可能
+        }
+    }
+
+    /// <summary>
+    /// Fieldタグを持つオブジェクトをゆっくり-Z方向に動かす
+    /// </summary>
+    void MoveFields()
+    {
+        GameObject[] fields = GameObject.FindGameObjectsWithTag("Field");
+        foreach (GameObject field in fields)
+        {
+            field.transform.Translate(0, 0, -fieldMoveSpeed * Time.deltaTime, Space.World);
+        }
+    }
+
+    /// <summary>
+    /// Gemタグを持つオブジェクトをゆっくり-Z方向に動かす
+    /// </summary>
+    void MoveGems()
+    {
+        GameObject[] gems = GameObject.FindGameObjectsWithTag("Gem");
+        foreach (GameObject gem in gems)
+        {
+            gem.transform.Translate(0, 0, -fieldMoveSpeed * Time.deltaTime, Space.World);
+        }
+    }
+
+    /// <summary>
+    /// Enemyが倒された時に呼ぶ。5分の1でGemをドロップする
+    /// </summary>
+    /// <param name="position">Enemyの位置</param>
+    public void TryDropGem(Vector3 position)
+    {
+        if (gemPrefab != null && Random.value < gemDropChance)
+        {
+            Instantiate(gemPrefab, position, Quaternion.identity);
         }
     }
 }
