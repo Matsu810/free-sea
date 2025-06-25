@@ -1,13 +1,14 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
     // Gemの種類
-    public enum GemType { Score, SpeedUp, ThreeWay , Cannon }
-    public GemType gemType = GemType.Score;
+    public enum GemType { Shield, SpeedUp, ThreeWay , Cannon }
+    public GemType gemType = GemType.Shield;
 
     // 色の設定
-    public Color scoreColor = Color.yellow;
+    public Color shieldColor = Color.yellow;
     public Color speedUpColor = Color.cyan;
     public Color threeWayColor = new Color(0.6f, 0f, 1f); // 紫
     public Color cannonColor = Color.white; // キャノン砲は白
@@ -25,7 +26,7 @@ public class Gem : MonoBehaviour
     {
         switch (gemType)
         {
-            case GemType.Score: rend.material.color = scoreColor; break;
+            case GemType.Shield: rend.material.color = shieldColor; break;
             case GemType.SpeedUp: rend.material.color = speedUpColor; break;
             case GemType.ThreeWay: rend.material.color = threeWayColor; break;
             case GemType.Cannon: rend.material.color = cannonColor; break;
@@ -52,8 +53,8 @@ public class Gem : MonoBehaviour
             {
                 switch (gemType)
                 {
-                    case GemType.Score:
-                        player.AddScore(10); // 例：スコアを加算
+                    case GemType.Shield:
+                        player.AddShield(3); // バリアを追加(3回分)
                         break;
                     case GemType.SpeedUp:
                         player.AddSpeedBuff(); // 例：スピードアップ

@@ -75,8 +75,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Die()
+    void Die()
     {
+        // Gemƒhƒƒbƒv”»’è
+        GameManager.Instance.TryDropGem(transform.position);
+
+        // “GÁ–Åˆ—
         Destroy(gameObject);
     }
 
@@ -96,7 +100,9 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("PlayerBullet"))
         {
             TakeDamage(1);
+            Invoke(nameof(Die), 2.0f); // ­‚µ‘Ò‚Á‚Ä‚©‚ç€‚Ê
             Destroy(other.gameObject);
         }
     }
+
 }

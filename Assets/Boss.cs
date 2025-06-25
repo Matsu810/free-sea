@@ -41,7 +41,7 @@ public class Boss : MonoBehaviour
         }
     }
 
-    void Update()
+    void Update()   
     {
         // î≠éÀä‘äuêßå‰
         fireTimer += Time.deltaTime;
@@ -89,6 +89,7 @@ public class Boss : MonoBehaviour
     void Die()
     {
         Debug.Log("Boss defeated!");
+        GameManager.Instance.OnBossDefeated();
         Destroy(gameObject);
     }
 

@@ -12,6 +12,7 @@ TagManager:
   - EnemySpawn
   - Gem
   - Field
+  - Sheld
   layers:
   - Default
   - TransparentFX

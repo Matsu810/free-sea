@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int maxSpawnCount = 5;
     [SerializeField] private float spawnIntervalMin = 3f;
     [SerializeField] private float spawnIntervalMax = 8f;
+    public bool canSpawn = true; 
 
     private List<BoxCollider> spawnColliders = new List<BoxCollider>();
 
@@ -36,6 +37,8 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
+            if (!canSpawn) yield break; // 追加：canSpawnがfalseならコルーチン終了
+
             float waitTime = Random.Range(spawnIntervalMin, spawnIntervalMax);
             yield return new WaitForSeconds(waitTime);
 
