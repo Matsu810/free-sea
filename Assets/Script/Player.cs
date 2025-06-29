@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -198,6 +199,12 @@ public class Player : MonoBehaviour
 
         rend.enabled = false;
         GetComponent<Collider>().enabled = false;
+        StartCoroutine(GoToTitleAfterDelay());
+    }
+    private IEnumerator GoToTitleAfterDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("TitleScene");
     }
 
     void OnTriggerEnter(Collider other)

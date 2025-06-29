@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.19553234, g: 0.2368962, b: 0.31048116, a: 1}
+  m_IndirectSpecularColor: {r: 0.19553196, g: 0.23689613, b: 0.31048054, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmList:
   - sceneName: GameScene
-    bgmClip: {fileID: 8300000, guid: 4a1eb21561653d244bce7f75022ca593, type: 3}
+    bgmClip: {fileID: 8300000, guid: 427a836e72ec883439e4f7ae630d9243, type: 3}
   - sceneName: LastBoss
     bgmClip: {fileID: 8300000, guid: 2cc0161a82467b2459ea8e540795c515, type: 3}
   audioSource: {fileID: 946864457}
@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WARNING!!!
+  m_text: VS METALSLIME!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 595bef200f22ad94fad6e1bdf2f5baff, type: 2}
   m_sharedMaterial: {fileID: 1862556575660701285, guid: 595bef200f22ad94fad6e1bdf2f5baff,

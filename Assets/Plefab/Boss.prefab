@@ -748,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c6d140fe06c0344a6954492ef5b1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
+  maxHP: 600
   bossBulletPrefab: {fileID: 4077927232043956960, guid: fcd8ac55bda665f4183436bfb5cf2656,
     type: 3}
   bulletSpawnPoint: {fileID: 8410055245264976888}
